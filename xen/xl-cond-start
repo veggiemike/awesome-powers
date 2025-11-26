@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# Awesome Powers - scripts & config files of pure awesomeness
+#
+# Copyright 2018-2025 Michael D Labriola <veggiemike@sourceruckus.org>
+#
+# Licensed under the GPLv3. See the file COPYING for details. 
+#
+# Start a domU if it isn't running - checks for IP on network as well as drbd
+# resource secondary everywhere
+#
+
+if [ -z "$XL_CFG" ]; then
+    echo XL_CFG required
+    exit 1
+fi
+if [ ! -e "$XL_CFG" ]; then
+    echo "xl config file $XL_CFG doesn't exist"
+    exit 1
+fi
+NAME=$(basename ${XL_CFG%.cfg})
+
+# ensure ip doesn't already exist on network
+if [ -n "$IP" ] && (ping -w1 -c1 $IP >/dev/null 2>&1); then
+    echo "not starting $NAME because $IP already on network"
+    exit 1
+fi
+
+# ensure drbd resource exists
+if [ -n "$DRBD_RESNAME" ] && ! (drbdadm status $DRBD_RESNAME >/dev/null 2>&1); then
+    echo "not starting $NAME because DRBD resource $DRBD_RESNAME invalid"
+    exit 1
+fi
+
+# ensure drbd resource is secondary on all peers
+if [ -n "$DRBD_RESNAME" ] && (drbdadm status $DRBD_RESNAME | grep -q Primary); then
+    echo "not starting $NAME because a DRBD peer is already Primary for resource $DRBD_RESNAME"
+    exit 1
+fi
+
+go="xl create $XL_CFG"
+echo $go
+[ -n "$DRYRUN" ] || eval $go

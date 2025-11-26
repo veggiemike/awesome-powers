@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Awesome Powers - scripts & config files of pure awesomeness
+#
+# Copyright 2018-2025 Michael D Labriola <veggiemike@sourceruckus.org>
+#
+# Licensed under the GPLv3. See the file COPYING for details. 
+#
+# This script wraps around xl-cond-start to conditionally start the netsrv2
+# virtual machine
+#
+
+export XL_CFG=/zroot/netsrv2.cfg
+export DRBD_RESNAME=netsrv2
+
+exec $(dirname $0)/xl-cond-start $*

@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Awesome Powers - scripts & config files of pure awesomeness
+#
+# Copyright 2018-2025 Michael D Labriola <veggiemike@sourceruckus.org>
+#
+# Licensed under the GPLv3. See the file COPYING for details. 
+#
+# This script wraps around xl-cond-start to conditionally start the piggy
+# virtual machine
+#
+
+export XL_CFG=/zroot/piggy.cfg
+export DRBD_RESNAME=piggy
+#export DRYRUN=y
+
+exec $(dirname $0)/xl-cond-start $*

@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# Awesome Powers - scripts & config files of pure awesomeness
+#
+# Copyright 2018-2025 Michael D Labriola <veggiemike@sourceruckus.org>
+#
+# Licensed under the GPLv3. See the file COPYING for details. 
+#
+# This script wraps around xl-cond-start to conditionally start the netsrv1
+# virtual machine
+#
+
+export XL_CFG=/zroot/netsrv1.cfg
+export DRBD_RESNAME=netsrv1
+# also check our IP, in case the fortigates are using it
+export IP=10.1.20.2
+
+exec $(dirname $0)/xl-cond-start $*
