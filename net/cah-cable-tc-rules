@@ -28,8 +28,10 @@
 #
 
 export DEV=eth0.2
-export UP_MBIT=20
-export DOWN_MBIT=100
+#export UP_MBIT=20
+export UP_MBIT=35
+#export DOWN_MBIT=100
+export DOWN_MBIT=1000
 
 # NOTE: We leave HIGH and LOW alone (at 20% and 5% of the 20Mbit uplink), but
 #       we're manually chopping 5M off the guaranteed rate for MEDIUM here to
