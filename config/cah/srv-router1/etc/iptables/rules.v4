@@ -233,10 +233,15 @@ COMMIT
 #
 # aldarion
 -A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source 9c:b6:d0:98:1c:5f -j ACCEPT
+# earendil
+-A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source 9c:65:eb:f6:a9:5f -j ACCEPT
 # witherwings
 -A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source f0:d4:15:cd:cb:9d -j ACCEPT
 # fawkes
--A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source 30:05:05:d9:4b:f3 -j ACCEPT
+#-A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source 30:05:05:d9:4b:f3 -j ACCEPT
+-A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source a0:02:a5:96:33:c2 -j ACCEPT
+# nagini
+-A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source 70:08:94:62:0a:dd -j ACCEPT
 # fang
 -A FORWARD -i eth0.40 -o eth0.30 -m mac --mac-source 3c:9c:0f:fa:ef:88 -j ACCEPT
 # norbert (because it's on wifi)
